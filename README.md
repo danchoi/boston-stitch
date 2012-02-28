@@ -2,7 +2,10 @@
 
 This simple utility takes the URL of the first page of a Boston.com gallery,
 stitches all the pages in the gallery into a simple single HTML page, and fires
-up Sinatra to display it (on port 4567).
+up Sinatra to display it.
+
+The Sinatra instance will run on port 4567 so make sure the port is available.
+boston-stitch will also attempt to open the result in your default browser.
 
 
 ## Install
