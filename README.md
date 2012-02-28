@@ -66,9 +66,9 @@ up Sinatra to display it (on port 4567).
 
 Turns this gallery:
 
-![screen](https://github.com/danchoi/gitfinger/raw/master/screens/boston1.png)
+![screen](https://github.com/danchoi/boston-stitch/raw/master/screens/boston1.png)
 
 into this:
 
-![screen](https://github.com/danchoi/gitfinger/raw/master/screens/boston2.png)
+![screen](https://github.com/danchoi/boston-stitch/raw/master/screens/boston2.png)
 
