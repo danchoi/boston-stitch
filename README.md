@@ -69,10 +69,10 @@ boston-stitch will also attempt to open the result in your default browser.
 
 Turns this gallery:
 
-![screen](https://github.com/danchoi/boston-stitch/blob/master/screens/boston1.png)
+![screen](https://github.com/danchoi/boston-stitch/raw/master/screens/boston1.png)
 
 into this:
 
-![screen2](https://github.com/danchoi/boston-stitch/blob/master/screens/boston2.png)
+![screen2](https://github.com/danchoi/boston-stitch/raw/master/screens/boston2.png)
 
 
