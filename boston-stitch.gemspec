@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.authors     = ["Daniel Choi"]
   s.email       = ["dhchoi@gmail.com"]
-  s.homepage    = "http://github.com/danchoi/gitfinger"
+  s.homepage    = "http://github.com/danchoi/boston-stitch"
   s.summary     = %q{Stitch together all the pages of a Boston.com gallery}
   s.description = %q{Stitch together all the pages of a Boston.com gallery}
 
