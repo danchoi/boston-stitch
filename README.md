@@ -73,6 +73,6 @@ Turns this gallery:
 
 into this:
 
-![screen2](https://github.com/danchoi/boston-stitch/raw/master/screens/boston2.png)
+![screen2](https://github.com/danchoi/boston-stitch/raw/master/screens/boston2.jpg)
 
 
