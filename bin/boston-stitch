@@ -44,7 +44,6 @@ pages = []
 page = process start_url
 pages << page
 while page[:next]
-
   STDERR.puts "Fetching #{page[:next]}"
   begin
     Timeout::timeout(5) {
@@ -89,6 +88,13 @@ END
     @pages = $pages
     haml :index
   end
+
+  browsercmd = RUBY_PLATFORM =~ /darwin/ ? 'open' : %w(gnome-open firefox open).detect {|x| `which #{x}` =~ /#{x}/}
+  fork do 
+    `sleep 1 && #{browsercmd} http://localhost:4567`
+  end
   run!
 end
+
+
 
