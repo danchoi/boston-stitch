@@ -5,7 +5,7 @@ require 'gitfinger'
 
 Gem::Specification.new do |s|
   s.name        = "boston-stitch"
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.platform    = Gem::Platform::RUBY
   s.required_ruby_version = '>= 1.9.0'
 
