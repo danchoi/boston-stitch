@@ -44,6 +44,7 @@ pages = []
 page = process start_url
 pages << page
 while page[:next]
+
   STDERR.puts "Fetching #{page[:next]}"
   begin
     Timeout::timeout(5) {
@@ -55,16 +56,11 @@ while page[:next]
   end
 end
 
-pages = { title: $title, pages: pages }
+$pages = { title: $title, pages: pages }
 
-get '/' do
-  @pages = pages
-  haml :index
-end
-
-
-__END__
-@@ index
+class Browser < Sinatra::Base
+  template :index do
+<<END
 %html
   %head
     %title= @pages[:title]
@@ -86,4 +82,13 @@ __END__
               %img{src: page[:photo]}
             - elsif page[:iframe_html]
               = page[:iframe_html]
+END
+  end
+
+  get '/' do
+    @pages = $pages
+    haml :index
+  end
+  run!
+end
 
