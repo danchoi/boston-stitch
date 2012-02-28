@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
-require 'gitfinger'
-
 Gem::Specification.new do |s|
   s.name        = "boston-stitch"
   s.version     = '0.0.4'
