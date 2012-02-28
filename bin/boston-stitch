@@ -1,14 +1,16 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 require 'nokogiri'
 require 'yaml'
 require 'sinatra'
 require 'timeout'
+require 'open-uri'
 
 $title = nil
 
 def process(url)
   url = url
-  html = `curl -s '#{url}'`
+  html = open(url).read
   doc = Nokogiri::HTML(html)
   unless $title 
     $title = doc.at('head title').inner_text
