@@ -5,6 +5,7 @@ require 'yaml'
 require 'sinatra'
 require 'timeout'
 require 'open-uri'
+require 'haml'
 
 $title = nil
 

@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "boston-stitch"
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.platform    = Gem::Platform::RUBY
   s.required_ruby_version = '>= 1.9.0'
 
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = []
   s.executables   = ['boston-stitch']
 
+  s.add_dependency 'haml'
   s.add_dependency 'nokogiri'
   s.add_dependency 'sinatra'
 end
