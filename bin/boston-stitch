@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+require 'nokogiri'
+require 'yaml'
+require 'sinatra'
+require 'timeout'
+
+$title = nil
+
+def process(url)
+  url = url
+  html = `curl -s '#{url}'`
+  doc = Nokogiri::HTML(html)
+  unless $title 
+    $title = doc.at('head title').inner_text
+    $stderr.puts "Title: #$title"
+  end
+  caption = doc.at('#photoCaption .tt').inner_html
+  caption_text = doc.at('#photoCaption .tt').inner_text
+  nextlink = doc.at('#photoCaption .next a')
+  img = doc.at('.Photo img')
+  photo_url = if !img.nil?
+    img[:src]
+  end
+  iframe_html = unless photo_url
+    doc.at('.Photo iframe').to_html
+  end
+  nexturl = nextlink.inner_text =~ /next/i ?  nextlink[:href] : nil
+  { photo: photo_url,
+    url: url,
+    caption_html: caption,
+    caption_text: caption_text,
+    iframe_html: iframe_html,
+    next: nexturl }
+end
+
+start_url = ARGV.first
+
+if start_url.nil? || start_url !~ /^http/
+  $stderr.puts "The first argument must be a URL to a Boston.com gallery page."
+  exit 1
+end
+
+pages = []
+page = process start_url
+pages << page
+while page[:next]
+  STDERR.puts "Fetching #{page[:next]}"
+  begin
+    Timeout::timeout(5) {
+      page = process page[:next]
+      pages << page
+    }
+  rescue Timeout::Error
+    puts "Timed out. Skipping"
+  end
+end
+
+pages = { title: $title, pages: pages }
+
+get '/' do
+  @pages = pages
+  haml :index
+end
+
+
+__END__
+@@ index
+%html
+  %head
+    %title= @pages[:title]
+    %style
+      td { vertical-align: middle; padding: 10px; border-top: 1px dotted #CCC  }
+      td:first-child { font-size: 16px; font-family: Arial; width: 25% }
+  %body
+    %h2= @pages[:title]
+    %table
+      - @pages[:pages].each do |page|
+        %tr
+          %td
+            = page[:caption_html]
+            %br
+            %p{style: 'font-size: 10px'}
+              %a{href: page[:url]} source page
+          %td
+            - if page[:photo]
+              %img{src: page[:photo]}
+            - elsif page[:iframe_html]
+              = page[:iframe_html]
+
