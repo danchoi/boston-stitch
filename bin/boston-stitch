@@ -25,7 +25,7 @@ def process(url)
     img[:src]
   end
   iframe_html = unless photo_url
-    doc.at('.Photo iframe').to_html
+    doc.at('.Photo iframe') && doc.at('.Photo iframe').to_html
   end
   nexturl = nextlink.inner_text =~ /next/i ?  nextlink[:href] : nil
   { photo: photo_url,
