@@ -76,3 +76,10 @@ into this:
 ![screen2](https://github.com/danchoi/boston-stitch/raw/master/screens/boston2.jpg)
 
 
+## Tip
+
+Here's a quick and dirty way to see all the galleries linked on the front page of boston.com:
+
+    curl http://boston.com/ | grep gallery
+
+Then just copy and paste any of the urls you see after boston-stitch command. 
