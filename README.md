@@ -82,4 +82,8 @@ Here's a quick and dirty way to see all the galleries linked on the front page o
 
     curl http://boston.com/ | grep gallery
 
+or the Things to Do section:
+
+    curl http://www.boston.com/thingstodo/?p1=GN_ThingsToDo | grep gallery
+
 Then just copy and paste any of the urls you see after boston-stitch command. 
