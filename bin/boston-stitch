@@ -36,6 +36,32 @@ def process(url)
     next: nexturl }
 end
 
+
+if ARGV[0] =~ /^g/
+  html = open("http://boston.com").read
+  doc = Nokogiri::HTML html
+  puts "Getting galleries on boston.com home page" 
+  links = []
+  doc.search("a").select {|x| x[:href] =~ %r{/gallery/}}.each_with_index do |a, i|
+    title = a.inner_text.strip.gsub(/\s{2,}/, ' ')
+    if title !~ /\w/
+      title = a[:href]
+    end
+    links << [a[:href], title]
+    puts "#{i + 1} %s" % title
+  end
+  print "Your choice: "
+  n = STDIN.gets.chomp
+  unless n =~ /\d/
+    puts "Goodbye"
+    exit
+  end
+  href, title  = links[n.to_i - 1] 
+  puts "Getting \"#{title}\""
+  ARGV.unshift href
+end
+
+
 start_url = ARGV.first
 
 if start_url.nil? || start_url !~ /^http/
