@@ -65,7 +65,9 @@ end
 start_url = ARGV.first
 
 if start_url.nil? || start_url !~ /^http/
-  $stderr.puts "The first argument must be a URL to a Boston.com gallery page."
+  $stderr.puts "USAGE:\n  boston-stitch [url]  or  boston-stitch g"
+  $stderr.puts "See https://github.com/danchoi/boston-stitch for instructions"
+
   exit 1
 end
 
